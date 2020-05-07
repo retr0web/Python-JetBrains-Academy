@@ -176,3 +176,41 @@ To read several inputs, you should call the function more than once:
 day = int(input())  # 4
 month = input()     # October
 ```
+
+# Integer arithmetic
+#### <b>Basic operations</b>
+Python supports basic arithmetic operations:
+
+* addition +
+* subtraction -
+* multiplication *
+* division /
+* integer division //
+* the remainder of a division %
+* exponentiation (is a way to raise a number to a power) **
+```python
+print(10 + 10)   # 20
+print(100 - 10)  # 90
+print(10 * 10)   # 100
+print(77 / 10)   # 7.7
+print(77 // 10)  # 7
+print(7 % 2)  # 1, because 7 is an odd number
+print(8 % 2)  # 0, because 8 is an even number
+print(10 ** 2)  # 100
+```
+#### Operation priority
+```python
+print(10 / 5 / 2)  # 1.0
+print(8 / 2 * 5)   # 20.0
+```
+The expressions above may seem ambiguous to you, since they have alternative solutions depending on the operation order: either 1.0 or 4.0 in the first example, and either 20.0 or 0.8 in the second one. In such cases, Python follows a left-to-right operation convention from mathematics. It's a good thing to know, so try to keep that in mind, too!
+#### Operators and PEP
+You must follow the rule of 79 lines, so if you have a lot of operations you have to write your code like this:
+```python
+income = (gross_wages
+          + taxable_interest
+          + (dividends - qualified_dividends)
+          - ira_deduction
+          - student_loan_interest)
+```
+This is called Knuth's style.
