@@ -137,3 +137,42 @@ Each variable has a specific name that distinguishes it from other variables. Th
 * name cannot start with a digit (e.g. <b>2q</b> is not a valid name);
 * a name must not be a <b>keyword</b>.<br>
 <strong>Do not break these rules; otherwise, your program will not work.</strong>
+
+# Taking input
+
+#### <b>Reading input from user</b>
+```python
+user_name = input()
+print('Hello, ' + user_name)
+```
+In the first line, the program will wait for the user to enter something and the fact that, since we assign the input to the variable, we will be able to perform some actions with it later. In the second line, the program appends the entered name to the end of 'Hello, ' string and prints the whole phrase as a result.
+
+#### <b>Clear messages</b>
+It is highly recommended to state clearly what type of input we expect from our user. To do so, the input() function may take an optional argument, that is a message:
+```python
+user_name = input('Please, enter your name: ')
+print('Hello, ' + user_name)
+```
+The program starts, the user sees the message, enters their name and gets the result as follows:
+```
+Please, enter your name: Sauron
+Hello, Sauron
+```
+#### <b>Important details</b>
+Let's dig into some details. First of all, how long can the user's input be? The second question is: how does the program understand that the person entered everything they wanted?<br>
+
+Here's a thing about the input() function: as soon as the program has started executing this function, it stops and waits for the user to enter some value and press Enter. That also means that if there's no input from the user, the program will not execute any further.<br>
+
+What else should you remember? Well, this: any value you enter, the function sees as a string. It doesn't matter if you enter digits or letters, the input will be converted to a string.<br>
+If you want a number to be a number, you should write it explicitly:
+```python
+print("What's your favorite number?")
+value = int(input())  # now value keeps an integer number
+```
+However, be careful: in these circumstances, if a user enters a non-integer value, an Error will appear.<br>
+
+To read several inputs, you should call the function more than once:
+```python
+day = int(input())  # 4
+month = input()     # October
+```
