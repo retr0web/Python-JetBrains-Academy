@@ -109,3 +109,31 @@ print(type(3.14))     # <class 'float'>
 print(type(-0.5))     # <class 'float'>
 ```
 As you can see from the examples above, the <b>type()</b> function indicates the data type of a passed value after the word class.
+
+# Variable
+
+#### <b>Defining a variable and assigning values</b>
+```python
+day_of_week = "Monday"
+
+print(day_of_week)  # Monday
+
+print(type(day_of_week))  # <class 'str'>
+```
+Python allows you to assign values of different types to the same variable. Let's assign the string value to a variable and then assign it an int value.
+```pyhton
+month = "December"
+print(type(month))  # <class 'str'>
+
+month = 12
+print(type(month))  # <class 'int'>
+```
+This works because Python is a language with dynamic typing.
+
+#### <b>Naming rules</b>
+Each variable has a specific name that distinguishes it from other variables. There are some rules for naming variables that you should follow:
+* names are case-sensitive (<b>month</b> is not the same as <b>Month</b>);
+* a name begins with a letter or an underscore, followed by letters, digits, and underscores (e.g. <b>user_name</b>, ,b>score1</b>, <b>_count</b>);
+* name cannot start with a digit (e.g. <b>2q</b> is not a valid name);
+* a name must not be a <b>keyword</b>.<br>
+<strong>Do not break these rules; otherwise, your program will not work.</strong>
