@@ -75,3 +75,37 @@ print("The long comment above explains this line of code.")
 <b>Comments that span multiple lines are called multi-line or block comments</b>. In Python, there is no special way to indicate them.
 
 Also, You may come across multi-line comments enclosed in triple quotes <b>"""..."""</b>, still, we recommend that you use several hash marks for this purpose. Thus, your code will comply with the official style guide. Triple quotes are reserved for documentation strings, or docstrings for short. They are also informative, but their use is limited to functions, methods and several other cases.
+
+# Basic data types
+Every data object (a variable or a constant) has a type that describes how to keep it in memory, which operation can be applied to this object and how to compute them.
+#### <b>Strings</b>
+Whenever you want to work with some kind of textual information in your program, you'll have to work with strings. The string type is called str. Strings are extremely common and useful in Python. String literals may be delimited using either single or double quotes.
+```python
+print("")                    # empty string
+print('a')                   # single character
+print("string")              # one word
+print('1234')                # a sequence of digits
+print("Hello, world!")       # a sentence
+print('Bonjour, le monde!')  # a sentence
+```
+#### Numerical types
+Numbers are the most important thing for any programmer. There is hardly any serious program you can write without using numbers, so let's discuss some basic numerical types:
+* <b>int</b> (signed integers). Called integers or ints, they are whole numbers (positive, negative, or zero), having no decimal point
+* <b>float</b> (floating-point numbers). Called floats, they represent real numbers and have a decimal point
+```python
+print(11)    # prints 11
+print(11.0)  # prints 11.0
+```
+#### Printing types
+We also have a way to clearly demonstrate types of different objects using the <b>type()</b> function which is a part of Python.
+```python
+print(type('hello'))  # <class 'str'>
+print(type("world"))  # <class 'str'>
+ 
+print(type(100))      # <class 'int'>
+print(type(-50))      # <class 'int'>
+ 
+print(type(3.14))     # <class 'float'>
+print(type(-0.5))     # <class 'float'>
+```
+As you can see from the examples above, the <b>type()</b> function indicates the data type of a passed value after the word class.
