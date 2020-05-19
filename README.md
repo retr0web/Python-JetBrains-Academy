@@ -316,3 +316,37 @@ while number < 5:
 print('Now, number is greater than or equal to 5')
 ```
 If you delete the part of the conditional code where you increase the value of a counter, you will bump into the infinite loop. What does it mean? Since you don’t increase your variable, a condition never becomes false and can work forever. Usually, it is a logical fallacy, and you'll have to stop the loop using special statements or finishing the loop manually.
+# Built-in functions
+```python
+number = "111"
+ 
+# finding the length of an object
+print(len(number))  # 3
+ 
+# converting types
+integer = int(number)
+float_number = float(number)
+print(str(float_number))  # "111.0"
+ 
+# adding and rounding numbers
+my_sum = sum((integer, float_number))
+print(my_sum)  # 222.0
+print(round(my_sum))  # 222
+ 
+# finding the minimum and the maximum
+print(min(integer, float_number))  # 111
+print(type(max(integer, float_number, my_sum)))  # <class 'float'>
+```
+# Functions
+```python
+def function_name(parameter1, parameter2, ...):
+    # function's body
+    ...
+    return "return value"
+```
+You can also declare a sort of empty function with pass statement:
+```python
+# This function does nothing (yet)
+def lazy_func(param):
+    pass
+```
