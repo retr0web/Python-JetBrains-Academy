@@ -214,3 +214,105 @@ income = (gross_wages
           - student_loan_interest)
 ```
 This is called Knuth's style.
+
+# Booleans
+
+The Boolean type, or simply bool, is a special data type that has only two possible values: <b>True</b> and <b>False</b>. In Python, the names of boolean values start with a capital letter.
+<br>
+```python
+is_open = True
+is_closed = False
+```
+There are three built-in boolean operators in Python: and, or and not. The first two are binary operators which means that they expect two arguments. not is a unary operator, it is always applied to a single operand. First, let's look at these operators applied to the boolean values.
+```python
+# AND
+a = True and True    # True
+b = True and False   # False
+c = False and False  # False
+d = False and True   # False
+
+# OR
+a = True or True    # True
+b = True or False   # True
+c = False or False  # False
+d = False or True   # True
+
+# NOT
+to_be = True           # to_be is True
+not_to_be = not to_be  # not_to_be is False
+```
+#### Truthy and Falsy values
+Though Python has the boolean data type, we often want to use non-boolean values in a logical context. And Python lets you test almost any object for truthfulness. When used with logical operators, values of non-boolean types, such as integers or strings, are called truthy or falsy. It depends on whether they are interpreted as True or False.
+<br>
+The following values are evaluated to False in Python:
+* constants defined to be false: None and False,
+* zero of any numeric type: 0, 0.0,
+* empty sequences and containers: "", [], {}.
+Anything else generally evaluates to True. Here is a couple of examples:
+```python
+print(0.0 or False)  # False
+print(False and "")  # False
+```
+#### Short-circuit evaluation
+The last thing to mention is that logical operators in Python are short-circuited. That's why they are also called lazy. That means that the second operand in such an expression is evaluated only if the first one is not sufficient to evaluate the whole expression.
+* x and y returns x if x is falsy; otherwise, it evaluates and returns y.
+* x or y returns x if x is truthy; otherwise, it evaluates and returns y.
+```python
+# division is never evaluated, because the first argument is True
+lazy_or = True or (1 / 0)  # True
+ 
+# division is never evaluated, because the first argument is False
+lazy_and = False and (1 / 0)  # False
+```
+# Comparisons
+#### Comparison operators
+* <b><</b> strictly less than
+* <b><=</b> less than or equal
+* <b>></b> strictly greater than
+* <b>>=</b> greater than or equal
+* <b>==</b> equal
+* <b>!=</b> not equal
+* <b>is</b> object identity
+* <b>is not</b> negated object identity
+* <b>in</b> membership
+* <b>not in</b> negated membership
+
+#### Comparison chaining
+Since comparison operations return boolean values, you can join them using logical operators.
+```python
+x = -5
+y = 10
+z = 12
+ 
+result = x < y and y <= z  # True
+```
+In Python, there is a fancier way to write complex comparisons. It is called chaining. For example, x < y <= z is almost equivalent to the expression you saw in the last example. The difference is that y evaluated only once. 
+```pyhton
+result = 10 < (100 * 100) <= 10000  # True, the multiplication is evaluated once
+```
+# If statement
+```python
+biscuits = 17
+if biscuits >= 5:
+    print("It's time for tea!")
+```
+#### Nested if statements
+```python
+rainbow = "red, orange, yellow, green, blue, indigo, violet"
+warm_colors = "red, yellow, orange"
+my_color = "orange"
+ 
+if my_color in rainbow:
+    print("Wow, your color is in the rainbow!")
+    if my_color in warm_colors:
+        print("Oh, by the way, it's a warm color.")
+```
+# While loop
+```python
+number = 0
+while number < 5:
+    print(number)
+    number += 1
+print('Now, number is greater than or equal to 5')
+```
+If you delete the part of the conditional code where you increase the value of a counter, you will bump into the infinite loop. What does it mean? Since you don’t increase your variable, a condition never becomes false and can work forever. Usually, it is a logical fallacy, and you'll have to stop the loop using special statements or finishing the loop manually.
