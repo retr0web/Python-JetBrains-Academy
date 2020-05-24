@@ -370,3 +370,41 @@ else:
         print('x > 100')
     print('This will be printed only because x >= 100')
 ```
+# Lists
+```python
+dog_breeds = ['corgi', 'labrador', 'poodle', 'jack russel']
+print(dog_breeds)  # ['corgi', 'labrador', 'poodle', 'jack russel']
+
+numbers = [1, 2, 3, 4, 5]
+print(numbers)  # [1, 2, 3, 4, 5]
+
+list_out_of_string = list('danger!')
+print(list_out_of_string)  # ['d', 'a', 'n', 'g', 'e', 'r', '!']
+ 
+list_out_of_integer = list(235)  # TypeError: 'int' object is not iterable
+
+multi_element_list = list('danger!')
+print(multi_element_list )  # ['d', 'a', 'n', 'g', 'e', 'r', '!']
+ 
+single_element_list = ['danger!']
+print(single_element_list)  # ['danger!']
+```
+#### Creating empty list
+```python
+empty_list_1 = list()
+empty_list_2 = []
+```
+#### Length of list
+```python
+numbers = [1, 2, 3, 4, 5]
+print(len(numbers))  # 5
+ 
+empty_list = list()
+print(len(empty_list))  # 0
+ 
+single_element_list = ['danger!']
+print(len(single_element_list))  # 1
+ 
+multi_elements_list = list('danger!')
+print(len(multi_elements_list))  # 7
+```
