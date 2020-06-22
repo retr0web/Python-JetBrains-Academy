@@ -370,6 +370,50 @@ else:
         print('x > 100')
     print('This will be printed only because x >= 100')
 ```
+# For loop
+```python
+oceans = ['Atlantic', 'Pacific', 'Indian', 'Southern', 'Arctic']
+for ocean in oceans:
+    print(ocean)
+```
+Even strings are iterable, so you can spell the word, for example:
+```python
+for char in 'magic':
+    print(char)
+    
+# Output
+m
+a
+g
+i
+c
+```
+#### Range function
+The range() function is used to specify the number of iterations. It returns a sequence of numbers from 0 (by default) and ends at a specified number. Be careful: the last number won’t be in the output.
+```python
+for i in range(5):
+    print(i)
+    
+# Output
+0
+1
+2
+3
+4
+```
+You can change the starting value if you’re not satisfied with 0, moreover, you can configure the increment (step) value by adding a third parameter:
+```python
+for i in range(5, 45, 10):
+    print(i)
+```
+#### Nested loops
+```python
+names = ['Rose', 'Daniel']
+surnames = ['Miller']
+for name in names:
+    for surname in surnames:
+         print(name, surname)
+```
 # Lists
 ```python
 dog_breeds = ['corgi', 'labrador', 'poodle', 'jack russel']
@@ -407,4 +451,42 @@ print(len(single_element_list))  # 1
  
 multi_elements_list = list('danger!')
 print(len(multi_elements_list))  # 7
+```
+#### List comprehension
+List comprehension is a way of making new lists. It allows you to create a list from any iterable object in a concise and efficient manner. See the basic syntax below:
+```python
+new_list = [x for x in some_iterable]
+
+# the equivalent code
+new_list = []
+for x in some_iterable:
+    new_list.append(x)
+```
+You may wonder why there is a need for list comprehensions at all since we have a list() function. Obviously, list comprehensions are used not just for copying elements from some iterable into a list, but mainly for modifying them in some way to create a specific new list. In this case, in the first place of the list comprehension, we write some function of our variable. For example, the code below shows how to create a list of squared numbers.
+```python
+# squared numbers
+numbers = [1, 2, 3]
+square_list = [x * x for x in numbers]  # [1, 4, 9]
+
+# from string to float
+strings = ["8.9", "6.0", "8.1", "7.5"]
+floats = [float(num) for num in strings]  # [8.9, 6.0, 8.1, 7.5]
+```
+#### List comprehension with if
+Another way to modify the original iterable object is by introducing the if statement into the list comprehension.
+```python
+# odd numbers
+numbers = [4, 8, 15, 16, 23, 42, 108]
+odd_list = [x for x in numbers if x % 2 == 1]  # [15, 23]
+
+# conditions with functions
+text = ["function", "is", "a", "synonym", "of", "occupation"]
+words_tion = [word for word in text if word.endswith("tion")]  
+print(words_tion)  # ["function", "occupation"]
+```
+Finally, we can introduce the else statement in list comprehension. The syntax here differs a bit: <b>x if condition else y for x in some_iterable </b>. Using this, we can, for example, get 0 a new list for each negative number in the old list:
+```python
+old_list = [8, 13, -7, 4, -9, 2, 10]
+new_list = [num if num >= 0 else 0 for num in old_list]
+print(new_list)  # [8, 13, 0, 4, 0, 2, 10]
 ```
