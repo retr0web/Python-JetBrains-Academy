@@ -137,6 +137,58 @@ Each variable has a specific name that distinguishes it from other variables. Th
 * name cannot start with a digit (e.g. <b>2q</b> is not a valid name);
 * a name must not be a <b>keyword</b>.<br>
 <strong>Do not break these rules; otherwise, your program will not work.</strong>
+#### Scope
+When you define a variable it becomes either global or local. If a variable is defined at the top-level of the module it is considered global. That means that you can refer to this variable from every code block in your program. Global variables can be useful when you need to share state information or some configuration between different functions. For example, you can store the name of a current user in a global variable and then use it where needed. It makes your code easier to change: in order to set a new user name you will only have to change a single variable.<br>
+
+Local variables are created when you define them in the body of a function. So its name can only be resolved inside the current function's scope. It lets you avoid issues with side-effects that may happen when using global variables.<br>
+Thus, a global variable can be accessed both from the top-level of the module and the function's body. On the other hand, a local variable is only visible inside the nearest scope and cannot be accessed from the outside.<br>
+A variable resolution in Python follows the <b>LEGB rule</b>. That means that the interpreter looks for a name in the following order:<br>
+1. <b>Locals</b>. Variables defined within the function body and not declared global.
+2. <b>Enclosing</b>. Names of the local scope in all enclosing functions from inner to outer.
+3. <b>Globals</b>. Names defined at the top-level of a module or declared global with a <b>global</b> keyword.
+4. <b>Built-in</b>. Any built-in name in Python.
+#### Global and nonlocal keywords
+We already mentioned one way to assign a global variable: make a definition at the top-level of a module. But there is also a special keyword global that allows us to declare a variable global inside a function's body.<br>
+
+You can't change the value of a global variable inside the function without using the <b>global</b> keyword:
+```python
+x = 1
+def print_global():
+    print(x)
+ 
+print_global()  # 1
+ 
+def modify_global():
+    print(x)
+    x = x + 1
+ 
+modify_global()  # UnboundLocalError
+```
+<b>nonlocal</b> keyword lets us assign to variables in the outer (but not global) scope:
+```python
+def func():
+    x = 1
+    def inner():
+        x = 2
+        print("inner:", x)
+    inner()
+    print("outer:", x)
+ 
+def nonlocal_func():
+    x = 1
+    def inner():
+        nonlocal x
+        x = 2
+        print("inner:", x)
+    inner()
+    print("outer:", x)
+ 
+func()  # inner: 2
+        # outer: 1
+ 
+nonlocal_func()  # inner: 2
+                 # outer: 2
+```
 
 # Taking input
 
@@ -290,6 +342,103 @@ In Python, there is a fancier way to write complex comparisons. It is called cha
 ```pyhton
 result = 10 < (100 * 100) <= 10000  # True, the multiplication is evaluated once
 ```
+# Strings methods
+#### Chaining methods
+* <b>str.replace(old, new[, count])</b> replaces all occurrences of the old string with the new one. The count parameter is optional, and if specified, only the first count occurrences are replaced in the given string.
+* <b>str.upper()</b> converts all characters of the string to the upper case.
+
+* <b>str.lower()</b> converts all characters of the string to the lower case.
+
+* <b>str.title()</b> converts the first character of each word to upper case.
+
+* <b>str.swapcase()</b> converts upper case to lower case and vice versa.
+
+* <b>str.capitalize()</b> changes the first character of the string to the title case and the rest to the lower case.
+#### Editing methods
+* <b>str.lstrip([chars])</b> removes the leading characters (i.e. characters from the left side). If the argument chars isn’t specified, leading whitespaces are removed.
+
+* <b>str.rstrip([chars])</b> removes the trailing characters (i.e. characters from the right side). The default for the argument chars is also whitespace.
+
+* <b>str.strip([chars])</b> removes both the leading and the trailing characters. The default is whitespace.
+```python
+whitespace_string = "     hey      "
+normal_string = "incomprehensibilities"
+ 
+# delete spaces from the left side
+whitespace_string.lstrip()  # "hey      "
+ 
+# delete all "i" and "s" from the left side
+normal_string.lstrip("is")  # "ncomprehensibilities"
+ 
+# delete spaces from the right side
+whitespace_string.rstrip()  # "     hey"
+ 
+# delete all "i" and "s" from the right side
+normal_string.rstrip("is")  # "incomprehensibilitie"
+ 
+# no spaces from both sides
+whitespace_string.strip()  # "hey"
+ 
+# delete all trailing "i" and "s" from both sides
+normal_string.strip("is")  # "ncomprehensibilitie"
+```
+# Split and Join methods for String
+The <b>split()</b> method divides a string into substrings by a separator. If the separator isn't given, whitespace is used as a default. The method returns a list of all the substrings and, notably, the separator itself is not included in any of the substrings.
+```python
+# split example
+definition = input()  # 'Coin of the realm is the legal money of the country' 
+ 
+definition.split()
+# ['Coin', 'of', 'the', 'realm', 'is', 'the', 'legal', 'money', 'of', 'the', 'country']
+ 
+definition.split("legal")
+# ['Coin of the realm is the ', ' money of the country']
+```
+You can also specify how many times the split is going to be done with the maxsplit argument that comes after the separator. The number of elements in the resulting list will be equal to maxsplit + 1.
+
+If the argument isn't specified, all possible splits are made.
+```python
+# maxsplit example
+definition = input()  # 'Coin of the realm is the legal money of the country'
+ 
+definition.split("of", 1)
+# ['Coin ', ' the realm is the legal money of the country']
+ 
+definition.split("of")
+# ['Coin ', ' the realm is the legal money ', ' the country']
+```
+The <b>join()</b> method is used to create a string out of a collection of strings. However, its use has a number of limitations. First, the argument of the method must be an iterable object with strings as its elements. And second, the method must be applied to a separator: a string that will separate the elements in a resulting string object. See below the examples of that:
+```python
+word_list  = ["dog", "cat", "rabbit", "parrot"]
+ 
+" ".join(word_list)  # "dog cat rabbit parrot"
+"".join(word_list)  # "dogcatrabbitparrot"
+"_".join(word_list)  # "dog_cat_rabbit_parrot"
+" and ".join(word_list)  # "dog and cat and rabbit and parrot"
+```
+The splitlines() method is similar to split(), but it is used specifically to split the string by the line boundaries. There are many escape sequences that signify the end of the line, but the split() method can only take one separator. So this is where the splitlines() method comes in handy:
+```python
+# splitlines example
+long_text = 'first line\nsecond line\rthird line\r\nforth line'
+ 
+long_text.splitlines()
+# ['first line', 'second line', 'third line', 'forth line']
+```
+# Multiline strings
+```python
+print("""This
+is
+a
+multi-line
+string""")
+```
+```
+This
+is
+a
+multi-line
+string
+```
 # If statement
 ```python
 biscuits = 17
@@ -379,6 +528,32 @@ surnames = ['Miller']
 for name in names:
     for surname in surnames:
          print(name, surname)
+```
+#### Loop control statements
+###### Break
+```python
+pets = ['dog', 'cat', 'parrot']
+for pet in pets:
+    print(pet)
+    if pet == 'cat':
+        break
+```
+###### Continue
+```python
+pets = ['dog', 'cat', 'parrot']
+for pet in pets:
+    if pet == 'dog':
+        continue
+    print(pet)
+```
+###### Loop else statement
+If the loop didn’t encounter the break statement, an else clause can be used to specify a block of code to be executed after the loop.
+```python
+pets = ['dog', 'cat', 'parrot']
+for pet in pets:
+    print(pet)
+else:
+    print('We need a turtle!')
 ```
 # Built-in functions
 ```python
@@ -490,3 +665,33 @@ old_list = [8, 13, -7, 4, -9, 2, 10]
 new_list = [num if num >= 0 else 0 for num in old_list]
 print(new_list)  # [8, 13, 0, 4, 0, 2, 10]
 ```
+# Any() and All()
+The result of the <b>any()</b> function call is the boolean value: it returns True if an element or a group of elements in an iterable object are evaluated True. Otherwise, it returns False. Let’s take a look at the example. Imagine that you and your friends, Jam and Andy, wrote a test and got your results in the form of a list with True and False values. The test is passed if at least one answer is correct. Now you need to check if you and your friends passed that test.
+```python
+your_results = [True, False, False]
+print(any(your_results))  # True
+
+andy_results = [False, False, False]
+print(any(andy_results))  # False
+```
+The <b>all()</b> function works pretty much like any(). The difference is that <b>all()</b> function checks if all the elements of an iterable object are True and returns True if they are. Otherwise, you get False. Do you remember the story from the previous section where we checked the results of the test? Let's proceed. Imagine yet another test, this time the final one. To succeed, you should answer all the questions correctly. How did it go this time for you and the two friends of yours?
+```python
+your_results = [True, False, False]
+print(all(your_results))  # False
+
+andy_results = [True, True, True]
+print(all(andy_results))  # True
+```
+#### Conditions
+Coders often use any() and all() functions in conditions. It helps to check the elements of iterable objects quickly and to avoid complex constructions.
+
+Let's choose a candy box for Valentine's Day. Each box contains several types of sweets. But you are interested in the even amount of candies of each type because, obviously, you will share them with your valentine.
+```python
+box = [10, 20, 33]
+ 
+if any([candy % 2 for candy in box]):
+    print("It is not a proper gift.")
+else:
+    print("Perfect!")
+```
+Short and sweet, isn't it? Life is like a box of chocolates! As long as the values you deal with can be converted to True and False, it's safe to use both functions in conditions.
