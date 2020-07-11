@@ -439,6 +439,41 @@ a
 multi-line
 string
 ```
+# String formating
+#### % operator
+Thus, the variable to the right of % was included in the string to the left of it. If we'd wanted to divide 11 by 3, the / operator would have returned a float number with a lot of decimal places.
+```python
+print(11 / 3)  # 3.6666666666666665
+```
+With % character, we could control the number of decimal places, for example, reduce their number to 3 or 2:
+```python
+print('%.3f' % (11/3))  # 3.667
+print('%.2f' % (11/3))  # 3.67
+```
+#### format() method
+```python
+print('Mix {}, {} and a {} to make an ideal omelet.'.format('2 eggs', '30 g of milk', 'pinch of salt'))
+
+print('{0} in the {1} by Frank Sinatra'.format('Strangers', 'Night'))
+
+print('The {film} at {theatre} was {adjective}!'.format(film='Lord of the Rings',
+                                                        adjective='incredible',
+                                                        theatre='BFI IMAX'))
+                                                        
+print('The {0} was {adjective}!'.format('Lord of the Rings', adjective='incredible'))
+```
+#### Formated string literals
+```python
+hundred_percent_number = 1823
+needed_percent = 16
+needed_percent_number = hundred_percent_number * needed_percent / 100
+ 
+print(f'{needed_percent}% from {hundred_percent_number} is {needed_percent_number}')
+# 16% from 1823 is 291.68
+ 
+print(f'Rounding {needed_percent_number} to 1 decimal place is {needed_percent_number:.1f}')
+# Rounding 291.68 to 1 decimal place is 291.7
+```
 # If statement
 ```python
 biscuits = 17
@@ -695,3 +730,69 @@ else:
     print("Perfect!")
 ```
 Short and sweet, isn't it? Life is like a box of chocolates! As long as the values you deal with can be converted to True and False, it's safe to use both functions in conditions.
+# Dictionary
+A dictionary consists of a collection of key-value pairs. Each key-value pair maps the key to its associated value. If you already know the values needed, then the easiest way to create a dictionary is to use the curly braces with a comma-separated list of <b>key: value</b> pairs. If you want to create an empty dictionary, you can do so with the help of curly braces as well. Note that values in a dictionary can be of different types.
+```python
+birds = {"pigeon": 12, "sparrow": 5, "red crossbill": 1}
+prices = {'espresso': 5.0, 'americano': 8.0, 'latte': 10, 'pastry': 'various prices'}
+empty_dict = {}
+ 
+print(type(birds))  # <class 'dict'>
+print(type(prices))  # <class 'dict'>
+print(type(empty_dict))  # <class 'dict'>
+```
+```python
+another_empty_dict = dict()  # using the dict constructor
+```
+When creating a non-empty dictionary, a dict constructor can take a dictionary as an argument, and / or future dictionary keys as arguments with assigned values, as in the example:
+```python
+# note that the future dictionary keys are listed without quotes
+prices_with_constr = dict({'espresso': 5.0}, americano=8.0, latte=10, pastry='various prices')
+```
+```python
+# a nested dictionary example
+my_pets = {'dog': {'name': 'Dolly', 'breed': 'collie'},
+           'cat': {'name': 'Fluffy', 'breed': 'maine coon'}}
+ 
+# another nested dictionary example
+# note that keys of the outer dictionary are numbers
+digits = {1: {'Word': 'one', 'Roman': 'I'}, 
+          2: {'Word': 'two', 'Roman': 'II'}, 
+          3: {'Word': 'three', 'Roman': 'III'}, 
+          4: {'Word': 'four', 'Roman': 'IV'}, 
+          5: {'Word': 'five', 'Roman': 'V'}}
+```
+#### Accessing items
+```python
+my_pet = {}
+ 
+# add 3 keys and their values into the dictionary
+my_pet['name'] = 'Dolly'
+my_pet['animal'] = 'dog'
+my_pet['breed'] = 'collie'
+ 
+print(my_pet)  # {'name': 'Dolly', 'animal': 'dog', 'breed': 'collie'}
+ 
+# get information from the dictionary about an added item
+print(my_pet['name'])  # Dolly
+
+
+# our nested dictionary once again:
+my_pets = {'dog': {'name': 'Dolly', 'breed': 'collie'},
+           'cat': {'name': 'Fluffy', 'breed': 'maine coon'}}
+ 
+print(my_pets['cat'])  # {'name': 'Fluffy', 'breed': 'maine coon'}
+ 
+print(my_pets['cat']['breed'])  # maine coon
+```
+#### Choosing keys
+You can save object of any type in a dictionary, but not all of them qualify as a key. You need a good, unique key for each object in your collection. Still, this is not the only restriction on dictionary keys and we will cover them later. For now, safely use numbers and strings.<br>
+
+When a key has already been added to your dictionary, its old value will be overridden:
+```python
+trilogy = {'IV': 'Star Wars', 'V': 'The Empire Strikes Back', 'VI': 'Return of the Jedi'}
+print(trilogy['IV'])  # Star Wars
+ 
+trilogy['IV'] = 'A New Hope'
+print(trilogy['IV'])  # A New Hope
+```
