@@ -1,7 +1,32 @@
 # Python-JetBrains-Academy
 
 This is a cheatsheet of what I've learned so far about python (3.x) on [JetBrains Academy](https://hyperskill.org/)<br>
+<br>
 - [What is PEP?](#what-is-pep)
+- [Comments](#comments)
+- [Basic data types](#basic-data-types)
+- [Variable](#variable)
+- [Taking input](#taking-input)
+- [Integer arithmetic](#integer-arithmetic)
+- [Booleans](#booleans)
+- [Comparisons](#comparisons)
+- [String methods](#strings-methods)
+- [Split and join methods for string](#split-and-join-methods-for-string)
+- [Multiline string](#multiline-strings)
+- [String formating](#string-formating)
+- [If statement](#if-statement)
+- [Else statement](#else-statement)
+- [While loop](#while-loop)
+- [For loop](#for-loop)
+- [Built-in functions](#built-in-functions)
+- [Functions](#functions)
+- [Lists](#lists)
+- [Any() and All()](#any-and-all)
+- [Dictionary](#dictionary)
+- [Modules](#modules)
+- [Random module](#random-module)
+- [Class](#class)
+<br>
 # What is PEP?
 <b>PEP</b> stands for <b>Python Enhancement Proposal</b>. There are different types of PEP and the most useful one for beginners is the informational PEP. PEPs of this kind typically describe commonly accepted guidelines or conventions about the language, so they can be very helpful. Besides PEP 8, which is an official style guide, another great PEP to look at is the [Zen of Python](https://www.python.org/dev/peps/pep-0020/).<br>
 Let me show you some of the basic rules of PEP. <br>
