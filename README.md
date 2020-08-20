@@ -796,3 +796,134 @@ print(trilogy['IV'])  # Star Wars
 trilogy['IV'] = 'A New Hope'
 print(trilogy['IV'])  # A New Hope
 ```
+# Modules
+#### Connect module
+```python
+import super_module
+
+super_module.super_function()  # calling a function defined in super_module
+
+print(super_module.super_variable)  # accessing a variable defined in super_module
+```
+#### Import exact function from module
+```python
+from super_module import super_function  # import one function from super_module
+
+super_function()  # super_function is now available directly at the current module
+
+super_module.super_function()  # note, that in this case name super_module is not imported, 
+                               # so this line leads to an error
+```
+A good practice is to load a single module in a single line and put all your imports at the top of the file because it increases readability.
+```python
+import module1
+import module2
+import module3
+
+# the rest of module code goes here
+```
+# Random module
+```python
+import random
+
+print(random.random())  # 0.5557276751294531
+```
+We can also control the pseudo-random behavior by specifying the seed manually, i.e. configure the new sequence of pseudo-random numbers using <b>random.seed(x)</b> function. You can set your own number or omit the optional argument x and consequently current system time would be used by default.
+```python
+random.seed()
+print(random.random())  # 0.956177930864557
+```
+#### Random basic functions
+```python
+print(random.uniform(3, 100))  # 35.94079523197162  # returns a pseudo-random float number in the range between a and b
+
+print(random.randint(35, 53))  # 52  # returns a pseudo-random integer number in the range between a and b
+
+print(random.choice('Voldemort'))  #  m, returns pseudo-random element from non-empty sequences
+"""
+random.randrange(a, b, c) – returns a pseudo-random number from a range between a and b with a step c. Just like with the range() function, the start and step arguments may be omitted with the default values 0 and 1 respectively. It means that the function can take one, two, or three parameters
+"""
+print(random.randrange(3, 100, 5))  # 18
+print(random.randrange(1, 5))       # 2
+print(random.randrange(100))        # 44
+
+tiny_list = ['a', 'apple', 'b', 'banana', 'c', 'cat']
+random.shuffle(tiny_list) # shuffles a sequence. Attention: it doesn't work with immutable datatypes
+print(tiny_list)  # ['apple', 'banana', 'a', 'cat', 'b', 'c']
+
+print(random.sample(range(100), 3))  # [24, 33, 91]  # returns a pseudo-random k length list from a population sequence. This function is used for random sampling without replacement
+```
+# Class
+```python
+# class syntax
+class MyClass:
+    var = ...  # some variable
+
+    def do_smt(self):
+    # some method
+```
+Generally, class name starts with a capital letter and it is usually a noun or a noun phrase. The names of the classes follow the CapWords convention: meaning that if it's a phrase, all words in the phrase are capitalized and written without underscores between them.
+```python
+# good class name
+class MyClass:
+    ...
+
+# not so good class name:
+class My_class:
+```
+#### Class attribute
+```python
+class Book:
+    material = "paper"
+    cover = "paperback"
+    all_books = []
+```
+#### Class instances
+```python
+my_book = Book()
+
+print(my_book.material)  # "paper"
+print(my_book.cover)  # "paperback"
+print(my_book.all_books)  # []
+```
+#### def __init__ (constructor)
+```python
+class River:
+    # list of all rivers
+    all_rivers = []
+    
+    def __init__(self, name, length):
+        self.name = name
+        self.length = length
+        # add current river to the list of all rivers
+        River.all_rivers.append(self)
+
+volga = River("Volga", 3530)
+seine = River("Seine", 776)
+nile = River("Nile", 6852)
+```
+You may have noticed that our <b>__init__</b> method had another argument besides name and length: <b>self</b>. The self argument represents a particular instance of the class and allows us to access its attributes and methods.
+<br>
+Note that when we actually call an object's method we don't write the self argument in the brackets. The self parameter (that represents a particular instance of the class) is passed to the instance method implicitly when it is called. So there are actually two ways to call an instance method: self.method() or class.method(self). In our example it would look like this:
+```python
+# self.method()
+volga.get_info()
+# The length of the Volga is 3530 km
+
+# class.method(self)
+River.get_info(volga)
+# The length of the Volga is 3530 km
+```
+#### Method syntax
+```python
+class MyClass:
+    # the constructor
+    def __init__(self, arg1):
+        self.att = arg1
+
+    # custom method
+    def do_smt(self):
+        # does something
+```
+###### Methods vs functions
+Though they are quite similar, Python does make a distinction between methods and functions. To quote the official documentation, "a method is a function that 'belongs to' an object." Since we're interested in OOP, we'll specifically be looking at methods associated with class instances. So each time you want to create a method, you should put <b>self</b> keyword as first argument.
