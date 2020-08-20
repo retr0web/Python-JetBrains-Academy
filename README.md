@@ -26,6 +26,7 @@ This is a cheatsheet of what I've learned so far about python (3.x) on [JetBrain
 - [Modules](#modules)
 - [Random module](#random-module)
 - [Class](#class)
+- [SQL and Python](#sql-and-python)
 <br>
 # What is PEP?
 <b>PEP</b> stands for <b>Python Enhancement Proposal</b>. There are different types of PEP and the most useful one for beginners is the informational PEP. PEPs of this kind typically describe commonly accepted guidelines or conventions about the language, so they can be very helpful. Besides PEP 8, which is an official style guide, another great PEP to look at is the [Zen of Python](https://www.python.org/dev/peps/pep-0020/).<br>
@@ -954,3 +955,31 @@ class MyClass:
 ```
 ###### Methods vs functions
 Though they are quite similar, Python does make a distinction between methods and functions. To quote the official documentation, "a method is a function that 'belongs to' an object." Since we're interested in OOP, we'll specifically be looking at methods associated with class instances. So each time you want to create a method, you should put <b>self</b> keyword as first argument.
+# SQL and Python
+You can use sqlite3 module to manage SQLite database from python. You don't need to install this module. It is included in the standard library.<br>
+<br>
+To use the module, you must first create a Connection object that represents the database. Here the data will be stored in the example.s3db file:
+```python
+import sqlite3
+conn = sqlite3.connect('example.s3db')
+```
+Once you have a Connection, you can create a Cursor object and call its execute() method to perform SQL queries:
+```python
+cur = conn.cursor()
+
+# Executes some SQL query
+cur.execute('SOME SQL QUERY')
+
+# After doing some changes in DB don't forget to commit them!
+conn.commit()
+```
+To get data returned by SELECT query you can user fetchone(), fetchall() methods:
+```python
+cur.execute('SOME SELECT QUERY')
+
+# Returns the first row from the response
+cur.fetchone()
+
+# Returns all rows from the response
+cur.fetchall()
+```
