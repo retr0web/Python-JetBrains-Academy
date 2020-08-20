@@ -840,9 +840,11 @@ print(random.uniform(3, 100))  # 35.94079523197162  # returns a pseudo-random fl
 print(random.randint(35, 53))  # 52  # returns a pseudo-random integer number in the range between a and b
 
 print(random.choice('Voldemort'))  #  m, returns pseudo-random element from non-empty sequences
-"""
-random.randrange(a, b, c) – returns a pseudo-random number from a range between a and b with a step c. Just like with the range() function, the start and step arguments may be omitted with the default values 0 and 1 respectively. It means that the function can take one, two, or three parameters
-"""
+
+# random.randrange(a, b, c) – returns a pseudo-random number from a range between a and b with a step c. 
+# Just like with the range() function, the start and step arguments may be omitted with the default values 0 and 1 respectively.
+# It means that the function can take one, two, or three parameters
+
 print(random.randrange(3, 100, 5))  # 18
 print(random.randrange(1, 5))       # 2
 print(random.randrange(100))        # 44
